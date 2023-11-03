@@ -3,49 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asuc <asuc@student.42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: mbuchs <mael@buchs.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 00:25:11 by asuc              #+#    #+#             */
-/*   Updated: 2023/10/31 18:01:35 by asuc             ###   ########.fr       */
+/*   Created: 2023/11/03 18:07:52 by mbuchs            #+#    #+#             */
+/*   Updated: 2023/11/03 18:07:52 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t	i;
-	char	*from;
-	char	*to;
+	size_t			i;
+	unsigned char	*from;
+	unsigned char	*to;
 
-	from = (char *)src;
-	to = (char *)dest;
+	if (!dest && !src)
+		return (NULL);
+	from = (unsigned char *)src;
+	to = (unsigned char *)dest;
 	i = 0;
-	if (from == to || n == 0)
-		return (dest);
-	if (to > from && to - from < (int)n)
+	if (to > from)
 	{
-		// `dest` chevauche la fin de `src`
-		i = n - 1 ;
-		while (i > 0)
-		{
-			to[i] = from[i];
-			i--;
-		}
-		return (dest);
+		while (n--)
+			to[n] = from[n];
 	}
-	if (from > to && from - to < (int)n)
+	else
 	{
-		// `dest` chevauche le début de `src`
 		while (i < n)
 		{
 			to[i] = from[i];
 			i++;
 		}
-		return (dest);
 	}
-	// src` et `dest` se chevauchent pas
-	ft_memcpy(dest, src, n);
 	return (dest);
 }

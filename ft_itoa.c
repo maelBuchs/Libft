@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asuc <asuc@student.42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: mbuchs <mael@buchs.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 23:28:48 by asuc              #+#    #+#             */
-/*   Updated: 2023/09/26 19:07:21 by asuc             ###   ########.fr       */
+/*   Created: 2023/11/03 18:04:54 by mbuchs            #+#    #+#             */
+/*   Updated: 2023/11/03 18:04:54 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_numlen(int n)
+static int	ft_numlen(long long int n)
 {
 	int	len;
 
@@ -32,27 +32,40 @@ static int	ft_numlen(int n)
 	return (len);
 }
 
+static void	neg_nbr(unsigned int n, int len, char **str)
+{
+	(*str) = ft_calloc((len + 1), sizeof(char));
+	if ((*str) == NULL)
+		return ;
+	(*str)[0] = '-';
+	len--;
+	while (len > 0)
+	{
+		(*str)[len] = n % 10 + '0';
+		n /= 10;
+		len--;
+	}
+}
+
 char	*ft_itoa(int n)
 {
 	int		len;
 	char	*str;
 
 	len = ft_numlen(n);
-	if (n == -2147483648)
-		return ("-2147483648");
-	str = malloc((len + 1) * sizeof(char));
-	if (!str)
+	if (n < 0)
+	{
+		neg_nbr(-n, len, &str);
+		return (str);
+	}
+	str = ft_calloc(sizeof(char), (len + 1));
+	if (str == NULL)
 		return (NULL);
-	str[len] = '\0';
-	if (n < 0)
-		str[0] = '-';
-	if (n < 0)
-		n = -n;
 	len--;
-	while (len)
+	while (len >= 0)
 	{
 		str[len] = n % 10 + '0';
-		n = n / 10;
+		n /= 10;
 		len--;
 	}
 	return (str);

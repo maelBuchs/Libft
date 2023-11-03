@@ -3,41 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asuc <asuc@student.42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: mbuchs <mael@buchs.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 21:24:30 by asuc              #+#    #+#             */
-/*   Updated: 2023/10/30 21:38:02 by asuc             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asuc <asuc@student.42angouleme.fr>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/25 18:51:56 by asuc              #+#    #+#             */
-/*   Updated: 2023/07/26 18:55:26 by asuc             ###   ########.fr       */
+/*   Created: 2023/11/03 18:08:49 by mbuchs            #+#    #+#             */
+/*   Updated: 2023/11/03 18:08:49 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_strdup_split(char *src, char charset)
+static char	*ft_strdup_split(const char *src, char charset)
 {
 	char	*tab;
 	int		i;
-	int		len;
 
-	len = 0;
 	i = 0;
-	while (src[len])
-		len++;
-	tab = malloc(sizeof(char) * len);
+	while (src[i] != charset && src[i])
+		i++;
+	tab = malloc(sizeof(char) * (i + 1));
 	if (tab == NULL || src == NULL)
 		return (tab);
-	while (src[i] && src[i] != charset && tab)
+	i = 0;
+	while (src[i] && src[i] != charset)
 	{
 		tab[i] = src[i];
 		i++;
@@ -46,7 +33,7 @@ static char	*ft_strdup_split(char *src, char charset)
 	return (tab);
 }
 
-static int	count_word(char *str, char charset)
+static int	count_word(const char *str, char charset)
 {
 	int	i;
 	int	count;
@@ -64,15 +51,13 @@ static int	count_word(char *str, char charset)
 			bol = 0;
 		}
 		else
-		{
 			bol = 1;
-		}
 		i++;
 	}
 	return (count);
 }
 
-char	**ft_split(char *str, char charset)
+char	**ft_split(const char *str, char charset)
 {
 	char	**ret;
 	int		i;
@@ -81,18 +66,18 @@ char	**ft_split(char *str, char charset)
 	ret = NULL;
 	j = 0;
 	i = 0;
+	if (!str)
+		return (NULL);
 	ret = malloc(sizeof(char *) * (count_word(str, charset) + 1));
 	if (ret == NULL)
 		return (ret);
-	while (i < count_word(str, charset) && str)
+	while (i < count_word(str, charset))
 	{
-		while (str[i] == charset
-			&& str[j] != 0)
+		while (str[j] == charset && str[j] != 0)
 			j++;
 		ret[i] = ft_strdup_split(str + j, charset);
 		i++;
-		while (str[i] != charset
-			&& str[j] != 0)
+		while (str[j] != charset && str[j] != 0)
 			j++;
 	}
 	ret[i] = 0;

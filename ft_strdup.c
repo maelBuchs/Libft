@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asuc <asuc@student.42angouleme.fr>    +#+  +:+       +#+        */
+/*   By: mbuchs <mael@buchs.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 21:44:07 by asuc              #+#    #+#             */
-/*   Updated: 2023/07/26 12:34:51 by asuc             ###   ########.fr       */
+/*   Created: 2023/11/03 18:09:04 by mbuchs            #+#    #+#             */
+/*   Updated: 2023/11/03 18:09:04 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_strcpy(char *dest, char *src)
+static char	*ft_strcpy(char *dest, const char *src)
 {
 	int	i;
 
@@ -26,13 +26,13 @@ static char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-char	*ft_strdup(char *src)
+char	*ft_strdup(const char *s)
 {
 	char	*tab;
 
-	tab = malloc(sizeof(char) * (ft_strlen(src) + 1));
+	tab = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (tab == NULL)
 		return (tab);
-	ft_strcpy(tab, src);
+	ft_strcpy(tab, s);
 	return (tab);
 }

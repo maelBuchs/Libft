@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asuc <asuc@student.42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: mbuchs <mael@buchs.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 23:34:53 by asuc              #+#    #+#             */
-/*   Updated: 2023/10/30 12:13:40 by asuc             ###   ########.fr       */
+/*   Created: 2023/11/03 18:08:35 by mbuchs            #+#    #+#             */
+/*   Updated: 2023/11/03 18:08:35 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_putstr_fd(char *str, int fd)
 	int	i;
 
 	i = 0;
+	if (!str || !fd)
+		return ;
 	while (str[i])
 	{
 		ft_putchar_fd(str[i], fd);
