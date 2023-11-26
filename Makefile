@@ -37,8 +37,7 @@ LIB = ft_strlen.c\
 	ft_memcpy.c\
 	ft_memmove.c\
 	ft_memchr.c\
-
-ADDITIONAL = ft_substr.c\
+	ft_substr.c\
 	ft_strjoin.c\
 	ft_strtrim.c\
 	ft_split.c\
@@ -50,15 +49,17 @@ ADDITIONAL = ft_substr.c\
 	ft_putendl_fd.c\
 	ft_putnbr_fd.c\
 
-BONUS =	ft_lstadd_back_bonus.c\
-	ft_lstadd_front_bonus.c\
-	ft_lstlast_bonus.c\
-	ft_lstnew_bonus.c\
-	ft_lstsize_bonus.c\
-	ft_lstdelone_bonus.c\
-	ft_lstclear_bonus.c\
-	ft_lstiter_bonus.c\
-	ft_lstmap_bonus.c\
+ADDITIONAL = get_next_line.c\
+
+BONUS =	ft_lstadd_back.c\
+	ft_lstadd_front.c\
+	ft_lstlast.c\
+	ft_lstnew.c\
+	ft_lstsize.c\
+	ft_lstdelone.c\
+	ft_lstclear.c\
+	ft_lstiter.c\
+	ft_lstmap.c\
 
 SRC = $(LIB) $(ADDITIONAL)
 SRCS = $(LIB) $(ADDITIONAL) $(BONUS)

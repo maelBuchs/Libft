@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbuchs <mael@buchs.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 18:07:59 by mbuchs            #+#    #+#             */
-/*   Updated: 2023/11/03 18:07:59 by mbuchs           ###   ########.fr       */
+/*   Created: 2023/11/03 18:06:25 by mbuchs            #+#    #+#             */
+/*   Updated: 2023/11/03 18:06:25 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+int	ft_lstsize(t_list *lst)
 {
-	size_t			i;
-	unsigned char	*pos;
+	int	i;
 
-	pos = (unsigned char *)s;
-	i = 0;
-	while (i < n)
+	i = 1;
+	if (!lst)
+		return (0);
+	while (lst -> next)
 	{
-		(*pos) = c;
-		pos++;
+		lst = lst -> next;
 		i++;
 	}
-	return (s);
+	return (i);
 }
